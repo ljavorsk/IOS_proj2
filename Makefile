@@ -8,13 +8,13 @@ RM = rm -f
 
 .PHONY : all
 
-all: $(TARGET)
+all : $(TARGET)
 
 $(TARGET): $(TARGET).o
-    $(CC) $(CFLAGS) $< -o $@ $(LDFLAGS)
+	$(CC) $(CFLAGS) $< -o $@ $(LDFLAGS)
 
-$(TARGET).o: $(TARGET).c $(CFLAGS).h
-    $(CC) $(CFLAGS) -c $<
+$(TARGET).o: $(TARGET).c
+	$(CC) $(CFLAGS) -c $<
 
 clean:
-    $(RM) *.o $(TARGET)
+	$(RM) *.o $(TARGET)
