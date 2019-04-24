@@ -1,3 +1,37 @@
+/*
+|***************************************************************************;
+* Project           : River Crossing Problem (Semaphores)
+        *
+        * Program name      : proj2.c
+        *
+        * Author            : Lukas Javorsky (xjavor20@stud.fit.vutbr.cz)
+        *
+        * Subject           : IOS, project 2 "Práce s procesy (Synchronizace)"
+        *
+        * Lector            : Ing. Aleš Smrčka, Ph.D.
+        *
+        * University        : Faculty of Information Technology VUT Brno
+        *
+        * Date created      : 20190420
+*
+* Purpose           : River Crossing Problem implementation, semaphores are used for synchronization
+*
+* Usage             : Creats the P*2 number of persons and takes them on trip by 4.
+*                     After R miliseconds comes back, and the 4 persons leave and another 4
+*                     takes their places.
+*                     It ends when everyone have been on trip and left the boat
+*
+* Execute           : ./proj2 P H S R W C
+*                     (P - number of generated 'hackers' and 'serfs')
+*                     (H - maximum number of miliseconds, to generate new 'hacker')
+*                     (S - maximum number of miliseconds, to generate new 'serfs')
+*                     (R - maximum number of miliseconds, how long the trip takes)
+*                     (W - maximum number of miliseconds, after which the person comes back to mole)
+*                     (C - Capacity of persons to be on mole at once)
+*
+|***************************************************************************;
+ */
+
 #include "proj2.h"
 
 int main(int argc, char *argv[])
@@ -14,7 +48,7 @@ int main(int argc, char *argv[])
 
 int ErrorMsg(char *msg)
 {
-    fprintf(stderr, "%s\n", msg);
+    fprintf(stderr, RED"%s\n"RESET, msg);
     return EXIT_FAILURE;
 }
 

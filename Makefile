@@ -13,7 +13,7 @@ all : $(TARGET)
 $(TARGET): $(TARGET).o
 	$(CC) $(CFLAGS) $< -o $@ $(LDFLAGS)
 
-$(TARGET).o: $(TARGET).c
+$(TARGET).o: $(TARGET).c $(TARGET).h
 	$(CC) $(CFLAGS) -c $<
 
 clean:

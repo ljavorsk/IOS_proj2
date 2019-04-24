@@ -1,3 +1,37 @@
+/*
+|***************************************************************************;
+* Project           : River Crossing Problem (Semaphores)
+        *
+        * Program name      : proj2.h
+        *
+        * Author            : Lukas Javorsky (xjavor20@stud.fit.vutbr.cz)
+        *
+        * Subject           : IOS, project 2 "Práce s procesy (Synchronizace)"
+        *
+        * Lector            : Ing. Aleš Smrčka, Ph.D.
+        *
+        * University        : Faculty of Information Technology VUT Brno
+        *
+        * Date created      : 20190420
+*
+* Purpose           : River Crossing Problem implementation, semaphores are used for synchronization
+*
+* Usage             : Creats the P*2 number of persons and takes them on trip by 4.
+*                     After R miliseconds comes back, and the 4 persons leave and another 4
+*                     takes their places.
+*                     It ends when everyone have been on trip and left the boat
+*
+* Execute           : ./proj2 P H S R W C
+*                     (P - number of generated 'hackers' and 'serfs')
+*                     (H - maximum number of miliseconds, to generate new 'hacker')
+*                     (S - maximum number of miliseconds, to generate new 'serfs')
+*                     (R - maximum number of miliseconds, how long the trip takes)
+*                     (W - maximum number of miliseconds, after which the person comes back to mole)
+*                     (C - Capacity of persons to be on mole at once)
+*
+|***************************************************************************;
+ */
+
 #ifndef PROJ2_H
 #define PROJ2_H
 
@@ -16,8 +50,11 @@
 #include <string.h>
 
 //Macros
+#define RESET   "\033[0m"
+#define RED     "\033[31m"
 #define EXIT_FAILURE 1
 #define EXIT_SUCCESS 0
+
 #define NUMBER_OF_ARGUMENTS 7
 #define MMAP(ptr) {(ptr) = mmap(NULL, sizeof(*(ptr)), PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS, -1, 0);}
 #define RANDOMSLEEP(max_time) {if (max_time != 0) sleep(rand() % max_time);}

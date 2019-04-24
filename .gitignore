@@ -57,4 +57,4 @@ CMake*
 cmake-build*
 
 #VS Code files
-.vscode/
+*vscode*
