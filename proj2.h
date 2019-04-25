@@ -89,4 +89,13 @@ int GettingInputNumbers(int argc, char *argv[], int *argumets);
      */
 int InputControl(int *argv);
 
+/**
+     * @brief Generationg the serfs and hacker
+     * @param P number of generated 'hackers' and 'serfs'
+     * @param H maximum number of miliseconds, to generate new 'hacker'
+     * @param S maximum number of miliseconds, to generate new 'serfs'
+     * @return 1 if fails, 0 if success
+     */ 
+int Spawn(int P, int H, int S);
+
 #endif // PROJ2_H

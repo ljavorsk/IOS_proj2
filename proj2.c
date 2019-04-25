@@ -43,6 +43,9 @@ int main(int argc, char *argv[])
     if (InputControl(arguments) == EXIT_FAILURE)
         return EXIT_FAILURE;
 
+    if (Spawn(arguments[1], arguments[2], arguments[3]) == EXIT_FAILURE)
+        return EXIT_FAILURE;
+
     return EXIT_SUCCESS;
 }
 
@@ -90,4 +93,33 @@ int InputControl(int *argv)
         return ErrorMsg("C argument have to be bigger than 5");
 
     return 0;
+}
+
+int Spawn(int P, int H, int S){
+    
+    // Hackers and Serfs have their own parents_pids field
+    int parents_pids[P];
+    int pid;
+
+    for(size_t i = 0; i <= P*2; i++)
+    {
+      if ((pid = fork()) < 0)
+        return ErrorMsg("Fork problem");
+
+        if (pid == 0){  // Child Hacker
+            //TODO
+            exit(0);
+        }else { // Parent Hacker
+            parents_pids[i] = pid;
+            if ((pid = fork()) < 0)
+                return ErrorMsg("Fork problem");
+
+            if (pid == 0){  // Child Serf
+                //TODO
+                exit(0);
+            }else { // Parent Serf
+                parents_pids[i] = pid;
+            }
+    return 0;
+
 }
