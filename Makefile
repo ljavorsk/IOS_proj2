@@ -1,7 +1,7 @@
 # -*- MakeFile -*-
 
 CC = gcc
-CFLAGS = -std=gnu99 -Wall -Wextra -Werror -pedantic
+CFLAGS = -std=gnu99 -Wall -Wextra -pedantic
 LDFLAGS = -lrt -pthread
 TARGET = proj2
 RM = rm -f
@@ -16,5 +16,8 @@ $(TARGET): $(TARGET).o
 $(TARGET).o: $(TARGET).c $(TARGET).h
 	$(CC) $(CFLAGS) -c $<
 
+pack:
+	zip $(TARGET).zip $(TARGET).c $(TARGET).h Makefile
+
 clean:
-	$(RM) *.o $(TARGET)
+	$(RM) *.o $(TARGET) *.out
