@@ -273,7 +273,7 @@ void serfs(int identificator){
 }
 
 void startTrip(char *type, int identificator){
-    writeOut(type,"boards", identificator, true);
+    writeOut(type,"boards\t", identificator, true);
     RANDOMSLEEP(arguments[5]);
     for(int i = 0; i < 3; i++) sem_post(sem_leaving_boat); // Leaving boat
     for(int i = 0; i < 3; i++) sem_wait(sem_leaving_captain); // Leaving captain
@@ -288,21 +288,21 @@ void entersMole(char *type, int identificator){
     while(true){
         sem_wait(sem_queue_mole);
         if (shared_mem->NH + shared_mem->NS <= mole_queue_capacity){
-            writeOut(type,"waits", identificator, true);
+            writeOut(type,"waits\t", identificator, true);
             sem_post(sem_queue_mole);
             break;
         }else
         {
-            writeOut(type,"leaves queue", identificator, true);
+            writeOut(type,"leaves queue\t", identificator, true);
             sem_post(sem_queue_mole);
             RANDOMSLEEP(arguments[5]);
-            writeOut(type,"is back", identificator, false);
+            writeOut(type,"is back\t", identificator, false);
         }
     }
 }
 
 void leavingBoat(char *type, int identificator){
-    writeOut(type, "member exits", identificator, true);
+    writeOut(type, "member exits\t", identificator, true);
 }
 
 void captainLeaves(char *type, int identificator){
@@ -315,19 +315,19 @@ void writeOut(char *type, char *action, int identificator, bool counter){
     shared_mem->A++;
     if (counter){
         if (strcmp(type,"HACK") == 0){
-            fprintf(filename,"%d : %s %d : %s : %d : %d\n",shared_mem->A,type,identificator, action, shared_mem->NH, shared_mem->NS);
-            fprintf(stdout,"%d : %s %d : %s : %d : %d\n",shared_mem->A,type,identificator, action, shared_mem->NH, shared_mem->NS);
+            fprintf(filename,"%d\t : %s %d\t : %s\t: %d\t: %d\n",shared_mem->A,type,identificator, action, shared_mem->NH, shared_mem->NS);
+            fprintf(stdout,"%d\t : %s %d\t : %s\t: %d\t: %d\n",shared_mem->A,type,identificator, action, shared_mem->NH, shared_mem->NS);
         }else {
-            fprintf(filename,"%d : %s %d : %s : %d : %d\n",shared_mem->A,type,identificator, action, shared_mem->NH, shared_mem->NS);
-            fprintf(stdout,"%d : %s %d : %s : %d : %d\n",shared_mem->A,type,identificator, action, shared_mem->NH, shared_mem->NS);
+            fprintf(filename,"%d\t : %s %d\t : %s\t: %d\t: %d\n",shared_mem->A,type,identificator, action, shared_mem->NH, shared_mem->NS);
+            fprintf(stdout,"%d\t : %s %d\t : %s\t: %d\t: %d\n",shared_mem->A,type,identificator, action, shared_mem->NH, shared_mem->NS);
         }
     }else {
         if (strcmp(type,"HACK") == 0){
-            fprintf(filename,"%d : %s %d : %s\n",shared_mem->A,type,identificator, action);
-            fprintf(stdout, "%d : %s %d : %s\n",shared_mem->A,type,identificator,action);
+            fprintf(filename,"%d\t : %s %d\t : %s\n",shared_mem->A,type,identificator, action);
+            fprintf(stdout, "%d\t : %s %d\t : %s\n",shared_mem->A,type,identificator,action);
         }else {
-            fprintf(filename,"%d : %s %d : %s\n",shared_mem->A,type,identificator,action);
-            fprintf(stdout,"%d : %s %d : %s\n",shared_mem->A,type,identificator,action);
+            fprintf(filename,"%d\t : %s %d\t : %s\n",shared_mem->A,type,identificator,action);
+            fprintf(stdout,"%d\t : %s %d\t : %s\n",shared_mem->A,type,identificator,action);
         }
     }
     
